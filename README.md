@@ -4,3 +4,4 @@
 - Shows Bars
 - Shows Beers
 - Shows Happenings
+- Shows Buddies

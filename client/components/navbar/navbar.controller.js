@@ -2,10 +2,21 @@
 
 angular.module('draftcraftApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
-    $scope.menu = [{
-      'title': 'Home',
-      'link': '/'
-    }];
+    $scope.menu = 
+    [
+      {
+        'title': 'Home',
+        'link': '/'
+      },
+      {
+        'title': 'Bars',
+        'link': '/bars'
+      },
+      {
+        'title': 'Beers',
+        'link': '/beers'
+      }
+    ];
 
     $scope.isCollapsed = true;
     $scope.isLoggedIn = Auth.isLoggedIn;

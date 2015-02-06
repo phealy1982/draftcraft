@@ -7,6 +7,9 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
+var Beer = require('../api/beer/beer.model');
+var Bar = require('../api/bar/bar.model');
+var Happening = require('../api/happening/happening.model');
 
 Thing.find({}).remove(function() {
   Thing.create({
@@ -47,3 +50,55 @@ User.find({}).remove(function() {
     }
   );
 });
+
+Beer.find({}).remove(function() {
+  Beer.create({
+    provider: 'local',
+    name: '5am Saint',
+    brewery: 'Brewdog',
+    description: 'iconaclastic bla bla'
+  }, {
+    provider: 'local',
+    name: 'Punk IPA',
+    brewery: 'Brewdog',
+    description: 'beer for punks',
+  }, function() {
+      console.log('finished populating beers');
+    }
+  );
+});
+
+Bar.find({}).remove(function() {
+  Bar.create({
+    provider: 'local',
+    name: 'JW Sweetmans',
+    location: '56,231 45,232',
+    description: 'Brewpub in central dublin, overlooking River Liffey'
+  }, {
+    provider: 'local',
+    name: 'Against the Grain',
+    location: '56,234 45,234',
+    description: 'A Galway Bay Brewery bar with lots of character',
+  }, function() {
+      console.log('finished populating bars');
+    }
+  );
+});
+
+Happening.find({}).remove(function() {
+  Happening.create({
+    provider: 'local',
+    who: 'JW Sweetmans',
+    when: '2015-01-10 14:00',
+    what: 'We are brewing a new beer called Galay which will be full of hops from New Zealanda and we plan to release it in ireland next month. We cannot wait to see what you guys think'
+  }, {
+    provider: 'local',
+    who: 'Against the Grain',
+    when: '2015-01-10 14:00',
+    what: 'Punk IPA new on tap',
+  }, function() {
+      console.log('finished populating happenings');
+    }
+  );
+});
+

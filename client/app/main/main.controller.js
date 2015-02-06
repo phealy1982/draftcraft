@@ -1,22 +1,33 @@
 'use strict';
 
 angular.module('draftcraftApp')
-  .controller('MainCtrl', function ($scope, $http) {
-    $scope.awesomeThings = [];
+  .controller('MainCtrl', function ($scope, $http, Auth) {
+    $scope.happenings = [];
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-    });
+    $scope.isLoggedIn = Auth.isLoggedIn;
+    $scope.whatHappeningLimit = 140;
 
-    $scope.addThing = function() {
-      if($scope.newThing === '') {
-        return;
-      }
-      $http.post('/api/things', { name: $scope.newThing });
-      $scope.newThing = '';
+    $scope.exceedsWhatHappeningLimit = function(happening) {
+        return(happening.length > $scope.whatHappeningLimit);
     };
 
-    $scope.deleteThing = function(thing) {
-      $http.delete('/api/things/' + thing._id);
+    //if($scope.isLoggedIn()){
+      $http.get('/api/happenings').success(function(happenings) {
+        $scope.happenings = happenings;
+        
+      })
+      ;
+    //};
+
+    $scope.addHappening = function() {
+      if($scope.newHappening === '') {
+        return;
+      }
+      $http.post('/api/happenings', { name: $scope.newHappening });
+      $scope.newHappening = '';
+    };
+
+    $scope.deleteHappening = function(happening) {
+      $http.delete('/api/happenings/' + happening._id);
     };
   });

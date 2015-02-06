@@ -1,0 +1,35 @@
+div(ng-include='"components/navbar/navbar.html"')
+
+
+.container
+  .row
+    .col-lg-12
+      .btn-group.btn-group-justified(role='group')
+        .btn-group(role='group')
+          button.btn.btn-default(type='button') Name
+        .btn-group(role='group')
+          button.btn.btn-default(type='button') Distance
+        .btn-group(role='group')
+          button.btn.btn-default(type='button') Total beers
+br
+
+.container
+  .row
+    .col-lg-4.col-md-6(ng-repeat='bar in bars | orderBy:predicate')
+      .panel.panel-primary
+        .panel-heading
+          h3.panel-title 
+            a(href='#') {{bar.name}}
+        .panel-body
+          p. {{bar.description}}  
+          a(href='#') more...
+
+
+footer.footer
+  .container
+    p
+      | Angular Fullstack v2.0.13
+      = ' | '
+      a(href='https://twitter.com/tyhenkel') @tyhenkel
+      = ' | '
+      a(href='https://github.com/DaftMonk/generator-angular-fullstack/issues?state=open') Issues

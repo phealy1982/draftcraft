@@ -1,19 +1,29 @@
 div(ng-include='"components/navbar/navbar.html"')
 
-header#banner.hero-unit
+header#banner.hero-unit(ng-show='!isLoggedIn()' background-image='assets/images/pintglass.svg')
   .container
-    h1 'Allo, 'Allo!
-    p.lead Kick-start your next web app with Angular Fullstack
-    img(src='assets/images/yeoman.png', alt='I\'m Yeoman')
+    h1 draft craft
+    img(src='assets/images/pintglass.svg' width='75px', alt='A pint glass') 
+    img(src='assets/images/pintglass.svg' width='100px', alt='A pint glass') 
+    img(src='assets/images/pintglass.svg' width='75px', alt='A pint glass') 
+    p.lead craft beer
+    p.lead on draft
+    p.lead near you
+    p.lead now
 
-.container
+.container(ng-show='isLoggedIn()')
+  p.lead What's happening?
   .row
-    .col-lg-12
-      h1.page-header Features:
-      ul.nav.nav-tabs.nav-stacked.col-md-4.col-lg-4.col-sm-6(ng-repeat='thing in awesomeThings')
-        li
-          a(href='#', tooltip='{{thing.info}}')
-            | {{thing.name}}
+    .col-lg-12(ng-repeat='happening in happenings')
+      .panel.panel-primary
+        .panel-heading
+          h3.panel-title {{happening.when}} 
+           a(href='#') {{happening.who}}
+        .panel-body
+          p. {{happening.what | limitTo:whatHappeningLimit}} 
+          a(ng-show='exceedsWhatHappeningLimit("{{happening.what}}")' href='#') more...
+          
+
 
 footer.footer
   .container
